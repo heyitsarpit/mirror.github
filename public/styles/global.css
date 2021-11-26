@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body,
+  #__next {
+    @apply w-full h-full bg-[#0f0f0f] text-warmGray-200;
+    scroll-behavior: smooth;
+  }
+
+  html {
+    font: 100%/1.75 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  }
+
+  @supports (font-variation-settings: normal) {
+    html {
+      font: 100%/1.75 'inter var', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    }
+  }
+
+  *::selection {
+    @apply bg-yellow-500 text-warmGray-800;
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "name": "home",
+  "version": "1.0.0",
+  "description": "nextjs template",
+  "main": "index.js",
+  "author": "Arpit Bharti<arpitbharti73@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "next",
+    "template"
+  ],
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "postbuild": "next-sitemap",
+    "start": "next start",
+    "export": "next export",
+    "lint": "eslint . --ignore-path ./.gitignore",
+    "lint:fix": "eslint --fix --cache . --ignore-path ./.gitignore",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "next": "^12.0.4",
+    "next-pwa": "^5.4.1",
+    "next-seo": "^4.28.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+  },
+  "devDependencies": {
+    "@types/node": "16.11.10",
+    "@types/react": "17.0.37",
+    "@types/react-dom": "17.0.11",
+    "@typescript-eslint/eslint-plugin": "5.4.0",
+    "@typescript-eslint/parser": "5.4.0",
+    "autoprefixer": "^10.4.0",
+    "eslint": "7.32.0",
+    "eslint-config-next": "^12.0.4",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "eslint-plugin-simple-import-sort": "7.0.0",
+    "husky": "7.0.4",
+    "lint-staged": "12.1.2",
+    "next-sitemap": "^1.6.203",
+    "postcss": "^8.4.3",
+    "prettier": "2.5.0",
+    "tailwindcss": "^2.2.19",
+    "typescript": "4.5.2"
+  },
+  "lint-staged": {
+    "./**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix --cache ."
+    ],
+    "*.js": "eslint --cache --fix"
+  }
+}
