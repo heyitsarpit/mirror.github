@@ -1,13 +1,13 @@
 {
-  "name": "home",
+  "name": "mirror.github",
   "version": "1.0.0",
-  "description": "nextjs template",
+  "description": "Mirror Github Challenge",
   "main": "index.js",
   "author": "Arpit Bharti<arpitbharti73@gmail.com>",
   "license": "MIT",
   "keywords": [
     "next",
-    "template"
+    "mirror"
   ],
   "scripts": {
     "dev": "next",

@@ -13,7 +13,7 @@ class MyDocument extends Document {
         <body>
           <script
             dangerouslySetInnerHTML={{
-              __html: `a,e;a=document.body.classList,(e=localStorage.getItem("theme"))?a.add(e.replace(/"/g,"")):window.matchMedia("(prefers-color-scheme: dark)").matches?a.add("dark"):a.add("light")`
+              __html: `var e,a;e=document.body.classList,(a=localStorage.getItem("theme"))?e.add(a.replace(/"/g,"")):window.matchMedia("(prefers-color-scheme: dark)").matches?e.add("dark"):e.add("light");`
             }}
           />
           <Main />
