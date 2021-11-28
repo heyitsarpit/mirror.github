@@ -1,6 +1,7 @@
 import { gql } from 'graphql-request'
 import { githubClient } from 'lib/graphql_client'
 import { GetServerSideProps } from 'next'
+import { getSession } from 'next-auth/react'
 
 const USER_DATA = gql`
   query ($login: String!) {
@@ -18,7 +19,9 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   try {
     const data = await githubClient.request(USER_DATA, { login: user })
 
-    return { props: { data } }
+    const session = await getSession(ctx)
+
+    return { props: { data, session } }
   } catch {
     return { redirect: { permanent: false, destination: '/404' }, props: {} }
   }
