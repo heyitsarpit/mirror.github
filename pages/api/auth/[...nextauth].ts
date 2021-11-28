@@ -11,7 +11,6 @@ export default NextAuth({
       return token
     },
     async session({ session, token }) {
-      console.log('ran session', { session, token })
       session.accessToken = token.accessToken
       return session
     }
