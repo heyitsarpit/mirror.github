@@ -1,6 +1,6 @@
 import { gql, useMutation, useQuery } from 'urql'
 
-const REPOSITORY_DATA = gql`
+const REPOSITORIES_DATA = gql`
   query ($login: String!) {
     user(login: $login) {
       starredRepositories(first: 20, orderBy: { field: STARRED_AT, direction: DESC }) {
@@ -27,7 +27,7 @@ const REPOSITORY_DATA = gql`
   }
 `
 
-export type RepositoryData = {
+export type RepositoriesData = {
   user: {
     starredRepositories: {
       totalCount: number
@@ -52,9 +52,9 @@ export type RepositoryData = {
   }
 }
 
-export const useRepositoryData = (login: string | undefined) => {
-  const [result] = useQuery<RepositoryData>({
-    query: REPOSITORY_DATA,
+export const useRepositoriesData = (login: string | undefined) => {
+  const [result] = useQuery<RepositoriesData>({
+    query: REPOSITORIES_DATA,
     variables: { login }
   })
 
@@ -66,5 +66,33 @@ export const useRepositoryData = (login: string | undefined) => {
     repositories: data?.user.starredRepositories,
     fetching,
     error
+  }
+}
+
+const ADD_STAR_MUTATION = gql`
+  mutation ($starrableId: String!) {
+    addStar(input: { starrableId: $starrableId }) {
+      clientMutationId
+    }
+  }
+`
+
+const REMOVE_STAR_MUTATION = gql`
+  mutation ($starrableId: String!) {
+    removeStar(input: { starrableId: $starrableId }) {
+      clientMutationId
+    }
+  }
+`
+
+export function useStarRepository(id: string) {
+  const [addResult, addStar] = useMutation(ADD_STAR_MUTATION)
+  const [removeResult, removeStar] = useMutation(REMOVE_STAR_MUTATION)
+
+  return {
+    addResult,
+    addStar: () => addStar({ starrableId: id }),
+    removeResult,
+    removeStar: () => removeStar({ starrableId: id })
   }
 }

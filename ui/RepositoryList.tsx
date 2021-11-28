@@ -1,8 +1,8 @@
 import {
-  RepositoryData,
-  useRepositoryData,
+  RepositoriesData,
+  useRepositoriesData,
   useStarRepository
-} from 'data/useRepositoryData'
+} from 'data/useRepositoriesData'
 import { useViewerData } from 'data/useViewerData'
 import { getRelativeTime } from 'lib/fn/getRelativeTime'
 import Link from 'next/link'
@@ -13,7 +13,7 @@ type Props = {
 }
 
 export function RepositoryList({ login }: Props) {
-  const { repositories } = useRepositoryData(login)
+  const { repositories } = useRepositoriesData(login)
   const { viewer } = useViewerData()
 
   if (!repositories?.nodes || repositories.nodes.length === 0) {
@@ -53,7 +53,7 @@ function Repository({
   updatedAt,
   viewerHasStarred,
   nameWithOwner
-}: RepositoryData['user']['starredRepositories']['nodes'][0]) {
+}: RepositoriesData['user']['starredRepositories']['nodes'][0]) {
   const { addStar, removeStar, addResult } = useStarRepository(id)
 
   console.log({ addResult })
