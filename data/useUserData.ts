@@ -14,7 +14,7 @@ type UserData = {
   user: {
     login: string
     bio: string
-    comaany: string
+    company: string
   }
 }
 

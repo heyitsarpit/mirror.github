@@ -24,3 +24,9 @@
     @apply bg-yellow-500 text-warmGray-800;
   }
 }
+
+@layer components {
+  .btn{
+    @apply px-4 py-2 font-semibold bg-yellow-500 rounded-md text-warmGray-800 ring-offset-[#0f0f0f] hover:bg-amber-500;
+  }
+}
