@@ -26,7 +26,7 @@ export function RepositoryList({ login }: Props) {
     <div>
       <div className='flex items-center gap-2'>
         <h1 className='text-2xl'>
-          {viewer?.login === login ? 'Your' : `${login}'s'`} Repositories
+          repositories starred by {viewer?.login === login ? 'you' : `${login}`}
         </h1>
         <div className='flex items-center justify-between px-2 text-gray-200 border border-gray-700 rounded-full'>
           {repositories.totalCount}
@@ -53,7 +53,7 @@ function Repository({
   updatedAt,
   viewerHasStarred,
   nameWithOwner
-}: RepositoryData['user']['repositories']['nodes'][0]) {
+}: RepositoryData['user']['starredRepositories']['nodes'][0]) {
   const { addStar, removeStar, addResult } = useStarRepository(id)
 
   console.log({ addResult })

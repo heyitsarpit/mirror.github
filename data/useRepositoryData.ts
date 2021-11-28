@@ -3,7 +3,7 @@ import { gql, useMutation, useQuery } from 'urql'
 const REPOSITORY_DATA = gql`
   query ($login: String!) {
     user(login: $login) {
-      repositories(last: 10) {
+      starredRepositories(first: 20, orderBy: { field: STARRED_AT, direction: DESC }) {
         totalCount
         nodes {
           id
@@ -29,7 +29,7 @@ const REPOSITORY_DATA = gql`
 
 export type RepositoryData = {
   user: {
-    repositories: {
+    starredRepositories: {
       totalCount: number
       nodes: Array<{
         id: string
@@ -63,7 +63,7 @@ export const useRepositoryData = (login: string | undefined) => {
   if (!login) return { fetching, error, repositories: undefined }
 
   return {
-    repositories: data?.user.repositories,
+    repositories: data?.user.starredRepositories,
     fetching,
     error
   }
