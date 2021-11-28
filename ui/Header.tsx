@@ -1,9 +1,9 @@
-import { Auth } from './Auth'
+import { UserDropDown } from './UserDropDown'
 
 export function Header() {
   return (
-    <header className='flex flex-row-reverse p-4'>
-      <Auth />
+    <header className='flex flex-row-reverse'>
+      <UserDropDown />
     </header>
   )
 }

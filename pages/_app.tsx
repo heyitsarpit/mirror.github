@@ -20,7 +20,7 @@ const MyApp = ({ Component, pageProps }) => {
       <URQLProvider>
         <div className='w-full h-full'>
           <Header />
-          <main>
+          <main className='h-full'>
             <Component {...pageProps} />
           </main>
         </div>
