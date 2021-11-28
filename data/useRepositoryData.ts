@@ -1,10 +1,12 @@
-import { gql, useQuery } from 'urql'
+import { gql, useMutation, useQuery } from 'urql'
 
 const REPOSITORY_DATA = gql`
   query ($login: String!) {
     user(login: $login) {
       repositories(last: 10) {
+        totalCount
         nodes {
+          id
           name
           description
           isPrivate
@@ -27,12 +29,13 @@ const REPOSITORY_DATA = gql`
 export type RepositoryData = {
   user: {
     repositories: {
+      totalCount: number
       nodes: Array<{
         id: string
         name: string
         description: string
         isPrivate: string
-        stargazerCount: string
+        stargazerCount: number
         viewerHasStarred: boolean
         updatedAt: string
         languages: {
@@ -58,8 +61,36 @@ export const useRepositoryData = (login: string | undefined) => {
   if (!login) return { fetching, error, repositories: undefined }
 
   return {
-    repositories: data?.user.repositories.nodes,
+    repositories: data?.user.repositories,
     fetching,
     error
+  }
+}
+
+const ADD_STAR_MUTATION = gql`
+  mutation ($starrableId: String!) {
+    addStar(input: { starrableId: $starrableId }) {
+      clientMutationId
+    }
+  }
+`
+
+const REMOVE_STAR_MUTATION = gql`
+  mutation ($starrableId: String!) {
+    removeStar(input: { starrableId: $starrableId }) {
+      clientMutationId
+    }
+  }
+`
+
+export function useStarRepository(id: string) {
+  const [addResult, addStar] = useMutation(ADD_STAR_MUTATION)
+  const [removeResult, removeStar] = useMutation(REMOVE_STAR_MUTATION)
+
+  return {
+    addResult,
+    addStar: () => addStar({ starrableId: id }),
+    removeResult,
+    removeStar: () => removeStar({ starrableId: id })
   }
 }
