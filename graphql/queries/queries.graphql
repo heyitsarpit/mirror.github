@@ -1,0 +1,38 @@
+query ViewerLogin {
+  viewer {
+    login
+  }
+}
+
+query UserByLogin($login: String!) {
+  user(login: $login) {
+    login
+    bio
+    company
+  }
+}
+
+query StarredRepositoriesByLogin($login: String!) {
+  user(login: $login) {
+    starredRepositories(first: 20, orderBy: { field: STARRED_AT, direction: DESC }) {
+      totalCount
+      nodes {
+        id
+        name
+        description
+        isPrivate
+        stargazerCount
+        updatedAt
+        viewerHasStarred
+        nameWithOwner
+        languages(orderBy: { field: SIZE, direction: DESC }, first: 5) {
+          nodes {
+            color
+            id
+            name
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,18 @@
+overwrite: true
+schema: 'graphql/schema/schema.docs.graphql'
+documents: 'graphql/queries/**/*.graphql'
+generates:
+  graphql/generated/index.tsx:
+    config:
+      withHooks: true
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-urql
+    hooks:
+      afterOneFileWrite:
+        - eslint --fix
+
+  graphql/graphql.schema.json:
+    plugins:
+      - 'introspection'

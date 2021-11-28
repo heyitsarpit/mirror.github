@@ -17,9 +17,11 @@
     "export": "next export",
     "lint": "eslint . --ignore-path ./.gitignore",
     "lint:fix": "eslint --fix --cache . --ignore-path ./.gitignore",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "gql": "graphql-codegen --config codegen.yml"
   },
   "dependencies": {
+    "@graphql-codegen/typescript-urql": "^3.4.1",
     "@radix-ui/react-dropdown-menu": "^0.1.1",
     "@urql/devtools": "^2.0.3",
     "graphql": "^16.0.1",
@@ -33,6 +35,11 @@
     "urql": "^2.0.5"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "2.3.0",
+    "@graphql-codegen/introspection": "2.1.0",
+    "@graphql-codegen/typescript": "2.4.1",
+    "@graphql-codegen/typescript-operations": "2.2.1",
+    "@graphql-codegen/typescript-react-apollo": "3.2.2",
     "@types/node": "16.11.10",
     "@types/react": "17.0.37",
     "@types/react-dom": "17.0.11",
