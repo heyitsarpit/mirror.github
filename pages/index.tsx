@@ -1,4 +1,4 @@
-import { useViewerData } from 'data/useViewerData'
+import { useViewerLoginQuery } from 'graphql/generated'
 import { useSession } from 'next-auth/react'
 import { RepositoryList } from 'ui/RepositoryList'
 import { SignInButton } from 'ui/SignInButton'
@@ -21,15 +21,15 @@ function Welcome() {
 
 export default function Home() {
   const { data: session } = useSession()
-  const { viewer } = useViewerData()
+  const [viewerResult] = useViewerLoginQuery()
 
-  if (!session) {
+  if (!session || !viewerResult.data?.viewer) {
     return <Welcome />
   }
 
   return (
     <div className={wrapperClass}>
-      <RepositoryList login={viewer?.login} />
+      <RepositoryList login={viewerResult.data?.viewer.login} />
     </div>
   )
 }

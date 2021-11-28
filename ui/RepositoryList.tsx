@@ -1,20 +1,29 @@
-import {
-  RepositoriesData,
-  useRepositoriesData,
-  useStarRepository
-} from 'data/useRepositoriesData'
+import { useStarRepository } from 'data/useRepositoriesData'
 import { useViewerData } from 'data/useViewerData'
+import {
+  Language,
+  LanguageConnection,
+  Maybe,
+  StarredRepoFragment,
+  useStarredRepositoriesByLoginQuery,
+  useViewerLoginQuery
+} from 'graphql/generated'
 import { getRelativeTime } from 'lib/fn/getRelativeTime'
 import Link from 'next/link'
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
 
-type Props = {
-  login: string | undefined
+type RepositoryListProps = {
+  login: string
 }
 
-export function RepositoryList({ login }: Props) {
-  const { repositories } = useRepositoriesData(login)
-  const { viewer } = useViewerData()
+export function RepositoryList({ login }: RepositoryListProps) {
+  const [repositoriesResult] = useStarredRepositoriesByLoginQuery({
+    variables: { login }
+  })
+  const [viewerResult] = useViewerLoginQuery()
+
+  const { viewer } = viewerResult.data || {}
+  const { starredRepositories: repositories } = repositoriesResult.data?.user || {}
 
   if (!repositories?.nodes || repositories.nodes.length === 0) {
     return <div>User Not found</div>
@@ -33,17 +42,20 @@ export function RepositoryList({ login }: Props) {
         </div>
       </div>
       <ul>
-        {repositories.nodes.map((repository) => (
-          <li key={repository.id}>
-            <Repository {...repository} />
-          </li>
-        ))}
+        {repositories.nodes.map((repository) => {
+          const c = repository
+          return (
+            <li key={repository?.id}>
+              <RepositoryItem {...repository} />
+            </li>
+          )
+        })}
       </ul>
     </div>
   )
 }
 
-function Repository({
+function RepositoryItem({
   description,
   id,
   isPrivate,
@@ -53,8 +65,10 @@ function Repository({
   updatedAt,
   viewerHasStarred,
   nameWithOwner
-}: RepositoriesData['user']['starredRepositories']['nodes'][0]) {
+}: StarredRepoFragment & { languages: LanguageConnection }) {
   const { addStar, removeStar, addResult } = useStarRepository(id)
+
+  const c = languages.nodes?.[0]
 
   console.log({ addResult })
   return (
@@ -74,7 +88,7 @@ function Repository({
         <p className='text-sm text-white/70'>{description}</p>
 
         <div className='flex gap-4 text-xs'>
-          <Language language={languages.nodes[0]} />
+          <Language language={languages.nodes?.[0]} />
           <div className='flex items-center gap-1'>
             {stargazerCount}{' '}
             {stargazerCount > 0 ? <AiFillStar size='14' /> : <AiOutlineStar size='14' />}
@@ -99,17 +113,7 @@ function Repository({
   )
 }
 
-type LanguageProps = {
-  language:
-    | {
-        color: string
-        id: string
-        name: string
-      }
-    | undefined
-}
-
-function Language({ language }: LanguageProps) {
+function Language({ language }: { language: Maybe<Language> | undefined }) {
   if (!language) {
     return null
   }
@@ -118,7 +122,9 @@ function Language({ language }: LanguageProps) {
 
   return (
     <div className='flex items-center gap-1'>
-      <span style={{ backgroundColor: color }} className='w-3 h-3 rounded-full'></span>
+      <span
+        style={{ backgroundColor: color || 'white' }}
+        className='w-3 h-3 rounded-full'></span>
       <span>{name}</span>
     </div>
   )

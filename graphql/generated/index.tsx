@@ -23201,6 +23201,78 @@ export type UserByLoginQuery = {
     | undefined
 }
 
+export type StarredRepoNodesFragment = {
+  __typename?: 'StarredRepositoryConnection'
+  nodes?:
+    | Array<
+        | {
+            __typename?: 'Repository'
+            id: string
+            name: string
+            description?: string | null | undefined
+            isPrivate: boolean
+            stargazerCount: number
+            updatedAt: any
+            viewerHasStarred: boolean
+            nameWithOwner: string
+            languages?:
+              | {
+                  __typename?: 'LanguageConnection'
+                  nodes?:
+                    | Array<
+                        | {
+                            __typename?: 'Language'
+                            color?: string | null | undefined
+                            id: string
+                            name: string
+                          }
+                        | null
+                        | undefined
+                      >
+                    | null
+                    | undefined
+                }
+              | null
+              | undefined
+          }
+        | null
+        | undefined
+      >
+    | null
+    | undefined
+}
+
+export type StarredRepoFragment = {
+  __typename?: 'Repository'
+  id: string
+  name: string
+  description?: string | null | undefined
+  isPrivate: boolean
+  stargazerCount: number
+  updatedAt: any
+  viewerHasStarred: boolean
+  nameWithOwner: string
+  languages?:
+    | {
+        __typename?: 'LanguageConnection'
+        nodes?:
+          | Array<
+              | {
+                  __typename?: 'Language'
+                  color?: string | null | undefined
+                  id: string
+                  name: string
+                }
+              | null
+              | undefined
+            >
+          | null
+          | undefined
+      }
+    | null
+    | undefined
+}
+
 export type StarredRepositoriesByLoginQueryVariables = Exact<{
   login: Scalars['String']
 }>
@@ -23256,6 +23328,33 @@ export type StarredRepositoriesByLoginQuery = {
     | undefined
 }
 
+export const StarredRepoFragmentDoc = gql`
+  fragment StarredRepo on Repository {
+    id
+    name
+    description
+    isPrivate
+    stargazerCount
+    updatedAt
+    viewerHasStarred
+    nameWithOwner
+    languages(orderBy: { field: SIZE, direction: DESC }, first: 5) {
+      nodes {
+        color
+        id
+        name
+      }
+    }
+  }
+`
+export const StarredRepoNodesFragmentDoc = gql`
+  fragment StarredRepoNodes on StarredRepositoryConnection {
+    nodes {
+      ...StarredRepo
+    }
+  }
+  ${StarredRepoFragmentDoc}
+`
 export const ViewerLoginDocument = gql`
   query ViewerLogin {
     viewer {
@@ -23289,26 +23388,11 @@ export const StarredRepositoriesByLoginDocument = gql`
     user(login: $login) {
       starredRepositories(first: 20, orderBy: { field: STARRED_AT, direction: DESC }) {
         totalCount
-        nodes {
-          id
-          name
-          description
-          isPrivate
-          stargazerCount
-          updatedAt
-          viewerHasStarred
-          nameWithOwner
-          languages(orderBy: { field: SIZE, direction: DESC }, first: 5) {
-            nodes {
-              color
-              id
-              name
-            }
-          }
-        }
+        ...StarredRepoNodes
       }
     }
   }
+  ${StarredRepoNodesFragmentDoc}
 `
 
 export function useStarredRepositoriesByLoginQuery(

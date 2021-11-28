@@ -1,10 +1,12 @@
 import { Content, Group, Item, Label, Root, Trigger } from '@radix-ui/react-dropdown-menu'
-import { useViewerData } from 'data/useViewerData'
+import { useViewerLoginQuery } from 'graphql/generated'
 import { signOut, useSession } from 'next-auth/react'
 
 export function UserDropDown() {
-  const { viewer } = useViewerData()
   const { data: session, status } = useSession()
+  const [viewerResult] = useViewerLoginQuery()
+
+  const { viewer } = viewerResult.data || {}
 
   if (status !== 'authenticated' || !session) {
     return null
