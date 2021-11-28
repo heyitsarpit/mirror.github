@@ -5,6 +5,7 @@ import {
 } from 'data/useRepositoryData'
 import { useViewerData } from 'data/useViewerData'
 import { getRelativeTime } from 'lib/fn/getRelativeTime'
+import Link from 'next/link'
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
 
 type Props = {
@@ -24,8 +25,10 @@ export function RepositoryList({ login }: Props) {
   return (
     <div>
       <div className='flex items-center gap-2'>
-        <h1>{viewer?.login === login ? 'Your' : `${login}'s'`} Repositories</h1>
-        <div className='flex items-center justify-between px-2 text-sm text-gray-200 border border-gray-700 rounded-full'>
+        <h1 className='text-2xl'>
+          {viewer?.login === login ? 'Your' : `${login}'s'`} Repositories
+        </h1>
+        <div className='flex items-center justify-between px-2 text-gray-200 border border-gray-700 rounded-full'>
           {repositories.totalCount}
         </div>
       </div>
@@ -48,7 +51,8 @@ function Repository({
   stargazerCount,
   languages,
   updatedAt,
-  viewerHasStarred
+  viewerHasStarred,
+  nameWithOwner
 }: RepositoryData['user']['repositories']['nodes'][0]) {
   const { addStar, removeStar, addResult } = useStarRepository(id)
 
@@ -57,7 +61,11 @@ function Repository({
     <section className='flex flex-wrap-reverse items-start justify-between gap-2 p-4 my-4 bg-gray-900 rounded-md'>
       <div className='flex flex-col gap-4'>
         <div className='flex gap-4'>
-          <h2 className='text-lg md:text-xl'>{name}</h2>
+          <h2 className='text-lg md:text-xl'>
+            <Link href={`/${nameWithOwner}`}>
+              <a className='hover:text-blue-500'>{name}</a>
+            </Link>
+          </h2>
           <div className='flex items-center justify-between px-2 text-[0.7rem] text-gray-500 border border-gray-700 rounded-full'>
             {isPrivate ? 'private' : 'public'}
           </div>

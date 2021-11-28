@@ -13,6 +13,7 @@ const REPOSITORY_DATA = gql`
           stargazerCount
           updatedAt
           viewerHasStarred
+          nameWithOwner
           languages(orderBy: { field: SIZE, direction: DESC }, first: 5) {
             nodes {
               color
@@ -38,6 +39,7 @@ export type RepositoryData = {
         stargazerCount: number
         viewerHasStarred: boolean
         updatedAt: string
+        nameWithOwner: string
         languages: {
           nodes: Array<{
             color: string
