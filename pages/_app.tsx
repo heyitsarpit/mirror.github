@@ -3,16 +3,23 @@ import 'public/styles/global.css'
 
 import { useClient } from 'lib/hooks/useClient'
 import { SessionProvider } from 'next-auth/react'
-import { Provider as URQLProvider } from 'urql'
+import { Header } from 'ui/Header'
+import { Provider } from 'urql'
+
+function URQLProvider({ children }: { children: React.ReactNode }) {
+  const client = useClient()
+
+  return <Provider value={client}>{children}</Provider>
+}
 
 const MyApp = ({ Component, pageProps }) => {
   const { session } = pageProps
-  const client = useClient(session)
 
   return (
     <SessionProvider session={session}>
-      <URQLProvider value={client}>
+      <URQLProvider>
         <div className='w-full h-full'>
+          <Header />
           <main>
             <Component {...pageProps} />
           </main>
