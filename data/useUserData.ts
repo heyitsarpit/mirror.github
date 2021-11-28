@@ -18,13 +18,15 @@ type UserData = {
   }
 }
 
-export const useUserData = (login: string) => {
+export const useUserData = (login: string | undefined) => {
   const [result] = useQuery<UserData>({
     query: USER_DATA,
     variables: { login }
   })
 
   const { data, fetching, error } = result
+
+  if (!login) return { fetching, error, user: undefined }
 
   return {
     user: data?.user,

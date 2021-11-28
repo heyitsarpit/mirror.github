@@ -1,5 +1,6 @@
 import { useViewerData } from 'data/useViewerData'
 import { useSession } from 'next-auth/react'
+import { RepositoryList } from 'ui/RepositoryList'
 import { SignInButton } from 'ui/SignInButton'
 
 const wrapperClass = 'max-w-[75ch] h-full mx-auto pt-12 pb-28 px-5'
@@ -20,10 +21,15 @@ function Welcome() {
 
 export default function Home() {
   const { data: session } = useSession()
+  const { viewer } = useViewerData()
 
   if (!session) {
     return <Welcome />
   }
 
-  return <div className={wrapperClass}></div>
+  return (
+    <div className={wrapperClass}>
+      <RepositoryList login={viewer?.login} />
+    </div>
+  )
 }
