@@ -26,6 +26,8 @@
   *::selection {
     @apply bg-yellow-500 text-warmGray-800;
   }
+
+  
 }
 
 @layer components {
@@ -37,4 +39,5 @@
     outline: none;
     box-shadow: 0 0 0 0.3rem #ffffff;
   }
+
 }
