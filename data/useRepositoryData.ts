@@ -30,7 +30,7 @@ const REPOSITORY_DATA = gql`
         }
       }
 
-      stargazers(last: 20) {
+      stargazers(last: 25) {
         nodes {
           avatarUrl
           login

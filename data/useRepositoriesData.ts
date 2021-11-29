@@ -3,7 +3,7 @@ import { gql, useMutation, useQuery } from 'urql'
 const REPOSITORIES_DATA = gql`
   query ($login: String!) {
     user(login: $login) {
-      starredRepositories(first: 20, orderBy: { field: STARRED_AT, direction: DESC }) {
+      starredRepositories(first: 30, orderBy: { field: STARRED_AT, direction: DESC }) {
         totalCount
         nodes {
           id
