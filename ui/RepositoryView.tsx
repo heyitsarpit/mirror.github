@@ -2,11 +2,15 @@
 import { RepositoryData } from 'data/useRepositoryData'
 import { getRelativeTime } from 'lib/fn/getRelativeTime'
 import NextLink from 'next/link'
-import React from 'react'
+import React, { useLayoutEffect } from 'react'
+import ReactDom from 'react-dom'
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
 import { BiComment, BiFileBlank } from 'react-icons/bi'
 import { FaFolder } from 'react-icons/fa'
 import { FiGitBranch } from 'react-icons/fi'
+import ReactMarkdown from 'react-markdown'
+import rehypeRaw from 'rehype-raw'
+import remarkGfm from 'remark-gfm'
 
 import { Language } from './RepositoryList'
 import { StarButton } from './StarButton'
@@ -179,6 +183,30 @@ export function RepositoryView({ repository, name, owner }: RepositoryViewProps)
     )
   }
 
+  function Readme() {
+    useLayoutEffect(() => {
+      if (!readmeText) return
+
+      ReactDom.render(
+        <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]}>
+          {readmeText}
+        </ReactMarkdown>,
+        document.getElementById('markdown-body')
+      )
+    }, [])
+
+    if (!readmeText) return null
+
+    return (
+      <section className='my-4'>
+        <h2 className='text-xl font-normal'>Readme</h2>
+        <article
+          className='max-w-[75ch] px-4 py-4 prose border border-gray-600 rounded-sm prose-dark'
+          id='markdown-body'></article>
+      </section>
+    )
+  }
+
   return (
     <div>
       <div className='flex flex-wrap-reverse justify-between'>
@@ -191,9 +219,8 @@ export function RepositoryView({ repository, name, owner }: RepositoryViewProps)
         <Languages />
         <LastCommit />
         <Files />
+        <Readme />
       </div>
-
-      <div className='px-2 py-4 border border-gray-600 rounded-sm'>{readmeText}</div>
     </div>
   )
 }
