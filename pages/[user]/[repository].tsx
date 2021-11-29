@@ -1,5 +1,6 @@
 import { useRepositoryData } from 'data/useRepositoryData'
 import { useRouter } from 'next/router'
+import { NextSeo } from 'next-seo'
 import { LoadingBars } from 'ui/LoadingBars'
 import { RepositoryView } from 'ui/RepositoryView'
 
@@ -30,12 +31,15 @@ export default function Repository() {
   }
 
   return (
-    <div className={wrapperStyles}>
-      <RepositoryView
-        repository={repo}
-        owner={user as string}
-        name={repository as string}
-      />
-    </div>
+    <>
+      <NextSeo title={repository as string} />
+      <div className={wrapperStyles}>
+        <RepositoryView
+          repository={repo}
+          owner={user as string}
+          name={repository as string}
+        />
+      </div>
+    </>
   )
 }
