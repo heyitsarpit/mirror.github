@@ -20,7 +20,6 @@ const REPOSITORY_DATA = gql`
           entries {
             name
             type
-
             object {
               ... on Blob {
                 byteSize

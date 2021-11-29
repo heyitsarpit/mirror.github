@@ -63,7 +63,7 @@ export const useRepositoriesData = (login: string | undefined) => {
   if (!login) return { fetching, error, repositories: undefined }
 
   return {
-    repositories: data?.user.starredRepositories,
+    repositories: data?.user?.starredRepositories,
     fetching,
     error
   }
