@@ -6,8 +6,8 @@ class MyDocument extends Document {
     return (
       <Html lang='en'>
         <Head>
-          <link rel='shortcut icon' href='/images/favicon.ico' />
-          <link rel='apple-touch-icon' href='/images/favicon.ico' />
+          <link rel='shortcut icon' href='/assets/images/favicon.ico' />
+          <link rel='apple-touch-icon' href='/assets/images/favicon.ico' />
           <link rel='manifest' href='/manifest.json' />
         </Head>
         <body>

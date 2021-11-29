@@ -8,7 +8,7 @@ import { Spacer } from 'ui/Spacer'
 const wrapperClass = 'max-w-[75ch] h-full mx-auto pt-12 pb-28 px-5'
 
 function MirrorLogo() {
-  return <img src='/images/mirror.png' alt='Github Mirror' className='w-20' />
+  return <img src='/assets/images/mirror.png' alt='Github Mirror' className='w-20' />
 }
 
 function Welcome() {

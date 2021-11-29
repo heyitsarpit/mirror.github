@@ -1,5 +1,6 @@
-import 'public/styles/font.css'
-import 'public/styles/global.css'
+import 'public/assets/styles/font.css'
+import 'public/assets/styles/global.css'
+import 'public/assets/styles/gfm-readme.css'
 
 import { useClient } from 'lib/hooks/useClient'
 import { SessionProvider } from 'next-auth/react'

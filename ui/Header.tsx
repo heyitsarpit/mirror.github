@@ -8,7 +8,7 @@ function MirrorLogo() {
       <a
         className='flex items-center justify-center w-12 h-12 p-4 bg-gray-300 rounded-full'
         title='home'>
-        <img src='/images/mirror.png' alt='Github Mirror' className='w-full' />
+        <img src='/assets/images/mirror.png' alt='Github Mirror' className='w-full' />
       </a>
     </Link>
   )

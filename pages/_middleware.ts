@@ -8,7 +8,7 @@ export async function middleware(req: NextRequest) {
 
   if (
     !protectedPages.includes(req.page.name as string) ||
-    req.page.params?.user === 'images'
+    req.page.params?.user === 'assets'
   ) {
     return NextResponse.next()
   }
