@@ -85,7 +85,7 @@ const REMOVE_STAR_MUTATION = gql`
   }
 `
 
-export function useStarRepository(id: string) {
+export function useRepoStarMutation(id: string) {
   const [addResult, addStar] = useMutation(ADD_STAR_MUTATION)
   const [removeResult, removeStar] = useMutation(REMOVE_STAR_MUTATION)
 
