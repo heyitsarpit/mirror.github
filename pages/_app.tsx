@@ -18,7 +18,7 @@ const MyApp = ({ Component, pageProps }) => {
   return (
     <SessionProvider session={session}>
       <URQLProvider>
-        <div className='w-full h-full'>
+        <div className='flex flex-col w-full h-full'>
           <Header />
           <main className='h-full'>
             <Component {...pageProps} />
