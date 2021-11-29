@@ -1,19 +1,7 @@
-import { GetServerSideProps } from 'next'
 import { useRouter } from 'next/router'
-import { getSession } from 'next-auth/react'
 import { RepositoryList } from 'ui/RepositoryList'
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  try {
-    const session = await getSession(ctx)
-
-    return { props: { session } }
-  } catch {
-    return { redirect: { permanent: false, destination: '/' }, props: {} }
-  }
-}
-
-export default function User(props) {
+export default function User() {
   const router = useRouter()
   console.log(router)
 
