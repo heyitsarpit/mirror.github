@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { RepositoryData } from 'data/useRepositoryData'
 import { getRelativeTime } from 'lib/fn/getRelativeTime'
-import NextLink from 'next/link'
 import React, { useLayoutEffect } from 'react'
 import ReactDom from 'react-dom'
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
@@ -12,25 +11,9 @@ import ReactMarkdown from 'react-markdown'
 import rehypeRaw from 'rehype-raw'
 import remarkGfm from 'remark-gfm'
 
+import { Link } from './Link'
 import { Language } from './RepositoryList'
 import { StarButton } from './StarButton'
-
-type LinkProps = {
-  children: React.ReactNode
-  href: string
-  className?: string
-}
-function Link({
-  children,
-  href,
-  className = 'text-blue-500 hover:underline'
-}: LinkProps) {
-  return (
-    <NextLink href={href}>
-      <a className={className}>{children}</a>
-    </NextLink>
-  )
-}
 
 type RepositoryViewProps = {
   repository: RepositoryData['repository']
@@ -56,7 +39,6 @@ export function RepositoryView({ repository, name, owner }: RepositoryViewProps)
     viewerHasStarred
   } = repository
 
-  console.log({ stargazers })
   const readmeText = (readme1 || readme2 || readme3 || readme4 || readme5)?.text
 
   function Heading() {

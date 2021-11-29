@@ -18,14 +18,12 @@ export function RepositoryList({ login }: Props) {
     return <div>User Not found</div>
   }
 
-  console.log({ repositories })
-
   return (
     <div>
       <div className='flex items-center gap-2'>
-        <h1 className='text-2xl'>
+        <h2 className='text-lg'>
           repositories starred by {viewer?.login === login ? 'you' : `${login}`}
-        </h1>
+        </h2>
         <div className='flex items-center justify-between px-2 text-gray-200 border border-gray-700 rounded-full'>
           {repositories.totalCount}
         </div>
@@ -66,7 +64,9 @@ function Repository({
           </div>
         </div>
 
-        <p className='text-sm text-white/70'>{description}</p>
+        <p className='text-sm text-white/70 max-w-[55ch] overflow-hidden overflow-ellipsis whitespace-nowrap'>
+          {description}
+        </p>
 
         <div className='flex gap-4 text-xs'>
           <Language language={languages.nodes[0]} />

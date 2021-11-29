@@ -6,6 +6,7 @@ const USER_DATA = gql`
       login
       bio
       company
+      avatarUrl
     }
   }
 `
@@ -15,6 +16,7 @@ type UserData = {
     login: string
     bio: string
     company: string
+    avatarUrl: string
   }
 }
 
