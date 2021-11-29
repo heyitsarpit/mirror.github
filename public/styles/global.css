@@ -6,17 +6,20 @@
   html,
   body,
   #__next {
-    @apply w-full h-full bg-[#0f0f0f] text-warmGray-200;
+    @apply w-full h-full bg-[#0f0f0f] text-warmGray-200 font-light;
     scroll-behavior: smooth;
   }
 
   html {
-    font: 100%/1.75 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font: 100%/1.75 -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica,
+      Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
   }
 
   @supports (font-variation-settings: normal) {
     html {
-      font: 100%/1.75 'inter var', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      font: 100%/1.75 'inter var', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+        Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol';
     }
   }
 
@@ -26,7 +29,12 @@
 }
 
 @layer components {
-  .btn{
-    @apply px-4 py-2 font-semibold bg-white rounded-md text-black ring-offset-[#0f0f0f] hover:bg-gray-300;
+  .btn {
+    @apply px-4 py-2 font-medium text-black transition-shadow duration-200 ease-in-out bg-white rounded-md;
+  }
+
+  .btn:hover, .btn:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.3rem #ffffff;
   }
 }
