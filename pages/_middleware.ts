@@ -6,8 +6,12 @@ export async function middleware(req: NextRequest) {
 
   const protectedPages = ['/[user]', '/[user]/[repository]', '/404']
 
-  if (!protectedPages.includes(req.page.name as string)) return NextResponse.next()
-
+  if (
+    !protectedPages.includes(req.page.name as string) ||
+    req.page.params?.user === 'images'
+  ) {
+    return NextResponse.next()
+  }
   const session = await getToken({
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
