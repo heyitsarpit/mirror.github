@@ -1,5 +1,6 @@
 import { useViewerData } from 'data/useViewerData'
 import { useSession } from 'next-auth/react'
+import { NextSeo } from 'next-seo'
 import { RepositoryList } from 'ui/RepositoryList'
 import { SignInButton } from 'ui/SignInButton'
 import { Spacer } from 'ui/Spacer'
@@ -22,7 +23,7 @@ function Welcome() {
           Welcome to the Github Mirror Challenge!
         </h1>
         <p className='opacity-70'>
-          You can sign in with your Github account to see your starred repos.
+          You can sign in with your Github account to see your starred repositories.
         </p>
         <SignInButton />
       </section>
@@ -43,13 +44,16 @@ export default function Home() {
   const { data: session } = useSession()
   const { viewer } = useViewerData()
 
-  if (!session) {
-    return <Welcome />
-  }
-
   return (
-    <div className={wrapperClass}>
-      <RepositoryList login={viewer?.login} />
-    </div>
+    <>
+      <NextSeo title='Home' />
+      {!session ? (
+        <Welcome />
+      ) : (
+        <div className={wrapperClass}>
+          <RepositoryList login={viewer?.login} />
+        </div>
+      )}
+    </>
   )
 }
