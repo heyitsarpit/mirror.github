@@ -4,6 +4,7 @@ import { getRelativeTime } from 'lib/fn/getRelativeTime'
 import Link from 'next/link'
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
 
+import { LoadingBars } from './LoadingBars'
 import { StarButton } from './StarButton'
 
 type Props = {
@@ -11,9 +12,12 @@ type Props = {
 }
 
 export function RepositoryList({ login }: Props) {
-  const { repositories } = useRepositoriesData(login)
+  const { repositories, fetching } = useRepositoriesData(login)
   const { viewer } = useViewerData()
 
+  if (fetching) {
+    return <LoadingBars />
+  }
   if (!repositories?.nodes || repositories.nodes.length === 0) {
     return <div>User Not found</div>
   }

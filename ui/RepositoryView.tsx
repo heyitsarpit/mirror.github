@@ -44,7 +44,7 @@ export function RepositoryView({ repository, name, owner }: RepositoryViewProps)
   function Heading() {
     return (
       <div className='flex items-center gap-4 my-4'>
-        <h1 className='text-2xl font-semibold max-w-[25ch] overflow-hidden overflow-ellipsis whitespace-nowrap'>
+        <h1 className='text-2xl max-w-[25ch] overflow-hidden overflow-ellipsis whitespace-nowrap'>
           <Link href={`/${owner}`}>{owner}</Link>
           <span className='font-light text-gray-400'>{' / '}</span>
           <Link href={`/${owner}/${name}`}>{name}</Link>
@@ -95,7 +95,7 @@ export function RepositoryView({ repository, name, owner }: RepositoryViewProps)
         </div>
 
         <div className='flex justify-between px-2 py-2 border rounded-lg bg-trueGray-800 border-trueGray-700'>
-          <div className='flex gap-4'>
+          <div className='flex items-center gap-4'>
             <Link href={`/${author.user.login}`}>
               <div className='flex items-center gap-3'>
                 <img
@@ -108,7 +108,7 @@ export function RepositoryView({ repository, name, owner }: RepositoryViewProps)
             </Link>
             <Link
               href={commitUrl}
-              className='text-white hover:underline max-w-[35ch] overflow-hidden overflow-ellipsis whitespace-nowrap'>
+              className='text-gray-400 text-sm hover:underline max-w-[35ch] overflow-hidden overflow-ellipsis whitespace-nowrap'>
               {message}
             </Link>
           </div>
@@ -129,7 +129,7 @@ export function RepositoryView({ repository, name, owner }: RepositoryViewProps)
 
     return (
       <section className='my-4'>
-        <h2 className='font-normal'>Languages</h2>
+        <h2>Languages</h2>
         <div className='flex flex-wrap gap-2 mt-1 text-sm'>
           {languages.nodes.map((language) => (
             <Language key={language.id} language={language} />
@@ -144,7 +144,7 @@ export function RepositoryView({ repository, name, owner }: RepositoryViewProps)
 
     return (
       <section className='my-4'>
-        <h2 className='font-normal'>StarGazers</h2>
+        <h2>StarGazers</h2>
         <ul className='flex mt-1 ml-2'>
           {stargazers.nodes.map(({ avatarUrl, login }) => (
             <li key={login} className='-ml-2'>
@@ -153,7 +153,7 @@ export function RepositoryView({ repository, name, owner }: RepositoryViewProps)
                   <img
                     src={avatarUrl}
                     alt='author'
-                    className='w-6 rounded-full hover:scale-125'
+                    className='w-6 rounded-full hover:scale-150'
                     title={login}
                   />
                 </div>

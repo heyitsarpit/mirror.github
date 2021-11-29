@@ -1,5 +1,6 @@
-import { Content, Group, Item, Label, Root, Trigger } from '@radix-ui/react-dropdown-menu'
+import { Content, Item, Label, Root, Trigger } from '@radix-ui/react-dropdown-menu'
 import { useViewerData } from 'data/useViewerData'
+import Router from 'next/router'
 import { signOut, useSession } from 'next-auth/react'
 
 export function UserDropDown() {
@@ -21,22 +22,27 @@ export function UserDropDown() {
 
             <div>{session.user?.name}</div>
           </div>
-          <Content className='p-2 my-4 bg-gray-900 rounded-md'>
-            <Label className='mb-4 text-sm opacity-70'>
-              {viewer ? (
-                <span>
-                  Signed in as <strong>{viewer.login}</strong>
-                </span>
-              ) : null}
-            </Label>
-            <Group className='flex flex-col gap-2'>
-              <Item className='p-2 py-2 bg-gray-700 rounded-md'>Profile</Item>
-              <Item onSelect={() => signOut()} className='p-2 bg-gray-700 rounded-md'>
-                Sign Out
-              </Item>
-            </Group>
-          </Content>
         </Trigger>
+
+        <Content className='p-2 my-4 bg-gray-900 rounded-md'>
+          <Label className='mb-4 text-sm opacity-70'>
+            {viewer ? (
+              <span>
+                Signed in as <strong>{viewer.login}</strong>
+              </span>
+            ) : null}
+          </Label>
+          <Item
+            className='p-2 py-2 mb-1 bg-gray-700 rounded-md hover:bg-gray-600'
+            onSelect={() => Router.push(`/${viewer?.login}`)}>
+            Profile
+          </Item>
+          <Item
+            onSelect={() => signOut()}
+            className='p-2 bg-gray-700 rounded-md hover:bg-gray-600'>
+            Sign Out
+          </Item>
+        </Content>
       </Root>
     </div>
   )

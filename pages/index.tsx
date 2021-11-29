@@ -4,6 +4,7 @@ import { NextSeo } from 'next-seo'
 import { RepositoryList } from 'ui/RepositoryList'
 import { SignInButton } from 'ui/SignInButton'
 import { Spacer } from 'ui/Spacer'
+import { UserInfo } from 'ui/UserInfo'
 
 const wrapperClass = 'max-w-[75ch] h-full mx-auto pt-12 pb-28 px-5'
 
@@ -51,6 +52,7 @@ export default function Home() {
         <Welcome />
       ) : (
         <div className={wrapperClass}>
+          <UserInfo login={viewer?.login as string} />
           <RepositoryList login={viewer?.login} />
         </div>
       )}
