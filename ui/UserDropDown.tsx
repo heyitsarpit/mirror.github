@@ -15,7 +15,7 @@ export function UserDropDown() {
     <div className='flex items-center gap-4'>
       <Root>
         <Trigger>
-          <div className='flex items-center gap-2 px-4 py-2 bg-gray-800 rounded-md'>
+          <div className='flex items-center gap-2 px-4 py-2 rounded-md bg-gray-900/90 hover:bg-gray-800'>
             {session.user?.image ? (
               <img src={session.user.image} className='h-8 rounded-full' alt='avatar' />
             ) : null}

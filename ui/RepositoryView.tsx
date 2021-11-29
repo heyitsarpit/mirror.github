@@ -108,7 +108,7 @@ export function RepositoryView({ repository, name, owner }: RepositoryViewProps)
             </Link>
             <Link
               href={commitUrl}
-              className='text-gray-400 text-sm hover:underline max-w-[35ch] overflow-hidden overflow-ellipsis whitespace-nowrap'>
+              className='text-gray-400 text-sm hover:underline max-w-[10ch] sm:max-w-[35ch] overflow-hidden overflow-ellipsis whitespace-nowrap'>
               {message}
             </Link>
           </div>
@@ -181,9 +181,9 @@ export function RepositoryView({ repository, name, owner }: RepositoryViewProps)
 
     return (
       <section className='my-4'>
-        <h2 className='text-xl font-normal'>Readme</h2>
+        <h2 className='mb-4 text-xl font-normal'>README</h2>
         <article
-          className='max-w-[75ch] px-4 py-4 prose border border-gray-600 rounded-sm prose-dark'
+          className='max-w-[75ch] px-4 py-4 prose border border-gray-600 rounded-md prose-dark'
           id='markdown-body'></article>
       </section>
     )

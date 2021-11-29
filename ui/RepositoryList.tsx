@@ -69,12 +69,12 @@ function Repository({
               <a className='hover:text-blue-500 hover:underline'>{name}</a>
             </Link>
           </h2>
-          <div className='flex items-center justify-between px-2 text-[0.7rem] text-gray-500 border border-gray-700 rounded-full'>
+          <div className='flex items-center justify-between px-2 text-[0.7rem] text-gray-500 border border-gray-700 rounded-3xl h-[max-content]'>
             {isPrivate ? 'private' : 'public'}
           </div>
         </div>
 
-        <p className='text-sm text-white/70 max-w-[55ch] overflow-hidden overflow-ellipsis whitespace-nowrap'>
+        <p className='text-sm text-white/70 max-w-[55ch] overflow-hidden overflow-ellipsis'>
           {description}
         </p>
 
