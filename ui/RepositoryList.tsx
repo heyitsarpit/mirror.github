@@ -1,12 +1,10 @@
-import {
-  RepositoriesData,
-  useRepositoriesData,
-  useStarRepository
-} from 'data/useRepositoriesData'
+import { RepositoriesData, useRepositoriesData } from 'data/useRepositoriesData'
 import { useViewerData } from 'data/useViewerData'
 import { getRelativeTime } from 'lib/fn/getRelativeTime'
 import Link from 'next/link'
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
+
+import { StarButton } from './StarButton'
 
 type Props = {
   login: string | undefined
@@ -54,9 +52,6 @@ function Repository({
   viewerHasStarred,
   nameWithOwner
 }: RepositoriesData['user']['starredRepositories']['nodes'][0]) {
-  const { addStar, removeStar, addResult } = useStarRepository(id)
-
-  console.log({ addResult })
   return (
     <section className='flex flex-wrap-reverse items-start justify-between gap-2 p-4 my-4 bg-gray-900 rounded-md'>
       <div className='flex flex-col gap-4'>
@@ -82,19 +77,7 @@ function Repository({
           <div>Updated {getRelativeTime(+new Date(updatedAt))}</div>
         </div>
       </div>
-
-      <div>
-        <button
-          onClick={viewerHasStarred ? removeStar : addStar}
-          className={`flex items-center justify-between 
-          gap-2 px-2 py-1 border border-gray-700 rounded-md text-sm 
-          ${viewerHasStarred ? 'bg-gray-800' : ''}`}>
-          <span>
-            {viewerHasStarred ? <AiFillStar size='14' /> : <AiOutlineStar size='14' />}
-          </span>
-          <span>{viewerHasStarred ? 'Unstar' : 'Star'}</span>
-        </button>
-      </div>
+      <StarButton id={id} viewerHasStarred={viewerHasStarred} />
     </section>
   )
 }
@@ -109,7 +92,7 @@ type LanguageProps = {
     | undefined
 }
 
-function Language({ language }: LanguageProps) {
+export function Language({ language }: LanguageProps) {
   if (!language) {
     return null
   }
