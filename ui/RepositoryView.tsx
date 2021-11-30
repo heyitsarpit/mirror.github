@@ -191,7 +191,7 @@ export function RepositoryView({ repository, name, owner }: RepositoryViewProps)
 
   return (
     <div>
-      <div className='flex flex-wrap-reverse justify-between'>
+      <div className='flex flex-wrap-reverse items-center justify-between'>
         <Heading />
         <StarButton id={id} viewerHasStarred={viewerHasStarred} />
       </div>
