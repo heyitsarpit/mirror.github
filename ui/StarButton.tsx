@@ -28,15 +28,13 @@ export function StarButton({ viewerHasStarred, id }: StarButtonProps) {
   }
 
   return (
-    <div>
-      <button
-        onClick={onClick}
-        className={`flex items-center justify-between hover:opacity-70
+    <button
+      onClick={onClick}
+      className={`flex items-center justify-between hover:opacity-70
         gap-2 px-2 py-1 border border-gray-700 rounded-md text-sm 
         ${starred ? 'bg-gray-800' : ''}`}>
-        <span>{starred ? <AiFillStar size='14' /> : <AiOutlineStar size='14' />}</span>
-        <span>{starred ? 'Unstar' : 'Star'}</span>
-      </button>
-    </div>
+      <span>{starred ? <AiFillStar size='14' /> : <AiOutlineStar size='14' />}</span>
+      <span>{starred ? 'Unstar' : 'Star'}</span>
+    </button>
   )
 }

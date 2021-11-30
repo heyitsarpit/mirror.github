@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai'
 
 import { LoadingBars } from './LoadingBars'
+import { Spacer } from './Spacer'
 import { StarButton } from './StarButton'
 
 type Props = {
@@ -28,7 +29,7 @@ export function RepositoryList({ login }: Props) {
         <h2 className='text-lg'>
           repositories starred by {viewer?.login === login ? 'you' : `${login}`}
         </h2>
-        <div className='flex items-center justify-between px-2 text-gray-200 border border-gray-700 rounded-full'>
+        <div className='flex items-center text-sm text-gray-400 justify-between px-4 border border-gray-700 rounded-3xl h-[max-content]'>
           {repositories.totalCount}
         </div>
       </div>
@@ -57,10 +58,10 @@ function Repository({
   const [repoOwner] = nameWithOwner.split('/')
 
   return (
-    <section className='flex flex-wrap-reverse items-start justify-between gap-2 p-4 my-4 bg-gray-900 rounded-md'>
-      <div className='flex flex-col gap-4'>
-        <div className='flex gap-4'>
-          <h2 className='text-lg md:text-xl'>
+    <section className='flex flex-wrap-reverse items-start justify-between w-full gap-2 p-4 my-4 bg-gray-900 rounded-md'>
+      <div className='flex flex-col w-full gap-4'>
+        <div className='flex flex-wrap items-center gap-4'>
+          <h2 className='text-base md:text-xl'>
             <Link href={`/${repoOwner}`}>
               <a className='hover:text-blue-500 hover:underline'>{repoOwner}</a>
             </Link>
@@ -71,6 +72,10 @@ function Repository({
           </h2>
           <div className='flex items-center justify-between px-2 text-[0.7rem] text-gray-500 border border-gray-700 rounded-3xl h-[max-content]'>
             {isPrivate ? 'private' : 'public'}
+          </div>
+          <Spacer orientation='horizontal' />
+          <div className='hidden sm:block'>
+            <StarButton id={id} viewerHasStarred={viewerHasStarred} />
           </div>
         </div>
 
@@ -87,7 +92,6 @@ function Repository({
           <div>Updated {getRelativeTime(+new Date(updatedAt))}</div>
         </div>
       </div>
-      <StarButton id={id} viewerHasStarred={viewerHasStarred} />
     </section>
   )
 }
