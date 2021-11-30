@@ -1,3 +1,8 @@
+<div align="center">
+<img src="public/assets/images/mirror.png" alt="mirro github" width="100"/>
+</div>
+
+
 # [Mirror Github Challenge](https://mirror-github.vercel.app/)
 
 This is a hiring challenge to build an app with the github's graphql API with nextjs and typescript.
