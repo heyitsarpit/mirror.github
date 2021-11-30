@@ -78,4 +78,4 @@ I tried to rewrite the data fetching hooks and queries with graphql code generat
 ### Known Bugs
 
 - Some actions aren't always successful, like starring a repository, it's a case of repository permissions for external apps.
-- Some repos don't have a readme, so the readme page will be blank, looks like a bug with react-markdown.
+- Readme doesn't render locally linked images/links.
