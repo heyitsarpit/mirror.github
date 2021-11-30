@@ -66,19 +66,19 @@ const REPOSITORY_DATA = gql`
   }
 
   fragment RepoFragment on Repository {
-    readme1: object(expression: "main:README.md") {
+    readme1: object(expression: "HEAD:README.md") {
       ...ReadmeText
     }
-    readme2: object(expression: "main:README.MD") {
+    readme2: object(expression: "HEAD:README.MD") {
       ...ReadmeText
     }
-    readme3: object(expression: "main:readme.md") {
+    readme3: object(expression: "HEAD:readme.md") {
       ...ReadmeText
     }
-    readme4: object(expression: "main:Readme.md") {
+    readme4: object(expression: "HEAD:Readme.md") {
       ...ReadmeText
     }
-    readme5: object(expression: "main:README") {
+    readme5: object(expression: "HEAD:README") {
       ...ReadmeText
     }
   }
