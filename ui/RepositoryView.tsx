@@ -44,7 +44,7 @@ export function RepositoryView({ repository, name, owner }: RepositoryViewProps)
   function Heading() {
     return (
       <div className='flex items-center gap-4 my-4'>
-        <h1 className='text-2xl max-w-[25ch] overflow-hidden overflow-ellipsis whitespace-nowrap'>
+        <h1 className='text-2xl'>
           <Link href={`/${owner}`}>{owner}</Link>
           <span className='font-light text-gray-400'>{' / '}</span>
           <Link href={`/${owner}/${name}`}>{name}</Link>
