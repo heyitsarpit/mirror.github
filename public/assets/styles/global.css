@@ -26,8 +26,6 @@
   *::selection {
     @apply bg-yellow-500 text-warmGray-800;
   }
-
-  
 }
 
 @layer components {
@@ -35,9 +33,14 @@
     @apply px-4 py-2 font-medium text-black transition-shadow duration-200 ease-in-out bg-white rounded-md;
   }
 
-  .btn:hover, .btn:focus {
+  .btn:hover,
+  .btn:focus {
     outline: none;
     box-shadow: 0 0 0 0.3rem #ffffff;
   }
-
+  .btn:active {
+    @apply bg-gray-300;
+    outline: none;
+    box-shadow: 0 0 0 0.3rem rgba(212, 212, 216);
+  }
 }
