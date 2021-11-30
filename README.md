@@ -67,6 +67,10 @@ This was my first time using -
 
 So I had to learn how to use them correctly, next-auth is a great experience, next middleware is a bit janky and only next-auth beta works with it.
 
+next-auth does not expose the `authToken` to the client by default, so it took me a while to figure out how to get it and not expose my personal api token.
+
+I was using `getServerSideProps` to not expose my token, but that would have made the app read-only and I wanted to support mutations.
+
 ### Failed Experiment
 
 Code - [tree/gql-codegen](https://github.com/heyitsarpit/mirror.github/tree/gql-codegen)
