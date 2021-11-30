@@ -1,6 +1,11 @@
-# Mirror Github Challenge
+# [Mirror Github Challenge](https://mirror-github.vercel.app/)
 
 This is a hiring challenge to build an app with the github's graphql API with nextjs and typescript.
+
+Links -
+
+- [Home](https://mirror-github.vercel.app/)
+- [Example repository page link](https://mirror-github.vercel.app/chakra-ui/chakra-ui-vue)
 
 I focused on the following features:
 
