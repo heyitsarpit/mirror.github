@@ -2,6 +2,7 @@ import 'public/assets/styles/font.css'
 import 'public/assets/styles/global.css'
 import 'public/assets/styles/gfm-readme.css'
 
+import { IdProvider } from '@radix-ui/react-id'
 import { useClient } from 'lib/hooks/useClient'
 import { SessionProvider } from 'next-auth/react'
 import { Footer } from 'ui/Footer'
@@ -20,15 +21,17 @@ const MyApp = ({ Component, pageProps }) => {
   return (
     <>
       <SEO />
-      <SessionProvider session={session}>
-        <URQLProvider>
-          <Header />
-          <main>
-            <Component {...pageProps} />
-          </main>
-          <Footer />
-        </URQLProvider>
-      </SessionProvider>
+      <IdProvider>
+        <SessionProvider session={session}>
+          <URQLProvider>
+            <Header />
+            <main>
+              <Component {...pageProps} />
+            </main>
+            <Footer />
+          </URQLProvider>
+        </SessionProvider>
+      </IdProvider>
     </>
   )
 }

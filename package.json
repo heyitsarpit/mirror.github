@@ -61,8 +61,7 @@
   },
   "lint-staged": {
     "./**/*.{js,jsx,ts,tsx}": [
-      "eslint --fix --cache ."
-    ],
-    "*.js": "eslint --cache --fix"
+      "eslint --fix --cache . --ignore-path ./.gitignore"
+    ]
   }
 }

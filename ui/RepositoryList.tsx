@@ -20,7 +20,7 @@ export function RepositoryList({ login }: Props) {
     return <LoadingBars />
   }
   if (!repositories?.nodes || repositories.nodes.length === 0) {
-    return <div>User Not found</div>
+    return <div>Repositories Not found</div>
   }
 
   return (
