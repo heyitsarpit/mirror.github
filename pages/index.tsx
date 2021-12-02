@@ -3,7 +3,6 @@ import { useSession } from 'next-auth/react'
 import { NextSeo } from 'next-seo'
 import { RepositoryList } from 'ui/RepositoryList'
 import { SignInButton } from 'ui/SignInButton'
-import { Spacer } from 'ui/Spacer'
 import { UserInfo } from 'ui/UserInfo'
 
 const wrapperClass = 'max-w-[75ch] h-full mx-auto pt-12 pb-28 px-5'
@@ -14,12 +13,10 @@ function MirrorLogo() {
 
 function Welcome() {
   return (
-    <div className={`${wrapperClass} flex flex-col justify-center items-center`}>
-      <Spacer orientation='vertical' />
-
-      <section className='flex flex-col items-center justify-center text-center '>
+    <div
+      className={`${wrapperClass} h-[calc(100vh-5rem)] relative flex flex-col items-center justify-center`}>
+      <section className='absolute top-[30vh] flex flex-col items-center justify-center text-center'>
         <MirrorLogo />
-
         <h1 className='mt-4 text-3xl md:text-4xl'>
           Welcome to the Github Mirror Challenge!
         </h1>
@@ -28,15 +25,6 @@ function Welcome() {
         </p>
         <SignInButton />
       </section>
-      <Spacer orientation='vertical' />
-
-      <a
-        href='https://github.com/heyitsarpit/'
-        target='_blank'
-        rel='noopener noreferrer'
-        className='text-gray-500 justify-self-ends font-extralight hover:text-white'>
-        made by @heyitsarpit
-      </a>
     </div>
   )
 }
