@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { useViewerData } from 'data/useViewerData'
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next'
 import { getSession } from 'next-auth/react'
@@ -15,7 +16,7 @@ function Welcome() {
         <img
           src='/assets/images/mirror.png'
           alt='Github Mirror'
-          className='w-20 min-h-[104px]'
+          className='w-20 min-h-[104px] text-transparent'
         />
         <h1 className='mt-4 text-3xl md:text-4xl'>
           Welcome to the Github Mirror Challenge!
