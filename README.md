@@ -1,74 +1,80 @@
 <div align="center">
-<img src="public/assets/images/mirror.png" alt="mirro github" width="100"/>
+<img src="public/assets/images/mirror.png" alt="mirro github" width="130"/>
+
+<h1>
+<a href="https://mirror-github.vercel.app/" target="_blank" rel="noopener noreferrer">
+Mirror Github Challenge
+</a>
+</h1>
 </div>
-
-
-# [Mirror Github Challenge](https://mirror-github.vercel.app/)
 
 This is a hiring challenge to build an app with the github's graphql API with nextjs and typescript.
 
-Links -
+Links:
 
 - [Home](https://mirror-github.vercel.app/)
 - [Example repository page link](https://mirror-github.vercel.app/jamiebuilds/tinykeys)
 
 I focused on the following features:
 
-- Security: I used `next-auth` and next `\_middleware` to handle redirects and make sure user is authenticated before the page is even loaded.
-- Design: Use tailwind to keep the design visually consistent and responsive for mobile/desktop].
-- Performance - Graphql queries are cached with urql caching.
+- **Security**: I used `next-auth` and `next _middleware` to handle redirects and make sure user is authenticated before the page is even loaded.
+- **Design**: Use tailwind and radix-ui to keep the design visually consistent, responsive and accessible.
+- **Performance** - Graphql queries are cached with urql caching.
 
 ## Tech Used
 
-- NextJS 12
-- TailwindCSS
-- Graphql / URQL
-- Next-Auth
+- next.js 12
+- tailwind css
+- graphql / urql
+- next-auth
 - react-markdown
 - radix-ui
 - graphql code generator (❌ failed experiment)
 
 ## Pages
 
-### `/` - Home Page
+### Home Page — `/`
 
-if the user is not logged in - The app has a "signin" button on the home page.
+| user not logged in   | user is logged in                         |
+| -------------------- | ----------------------------------------- |
+| Show sign in button. | Show list of user's starred repositories. |
 
-if the user is logged in - The app will show the user a list of their starred repositories.
+### User Page — `/[user]`
 
-### `/[user]` - User Page
+| user **not** logged in                                         | user is logged in                                     |
+| -------------------------------------------------------------- | ----------------------------------------------------- |
+| Redirect to home(`/`) page, handled with nextjs `_middleware`. | Show the user's starred repositories with user's bio. |
 
-if the user is not logged in - The app will redirect the user to the home page, redirect handled with nextjs \_middleware.
+#### Each repository item will show
 
-if the user is logged in - The app will show the given user's list of starred repositories, also their name and bio.
-Each repository item will show
-
+- Links to the repository page
 - Top language
 - Number of stars
 - A button to star/unstar the repository
 
-### `/[user]/[repository]` - Repository Page
+### Repository Page — `/[user]/[repository]`
 
-if not logged in - same as `/[user]` route
+| user **not** logged in                                         | user is logged in                |
+| -------------------------------------------------------------- | -------------------------------- |
+| Redirect to home(`/`) page, handled with nextjs `_middleware`. | Show details about a repository. |
 
-if the user is logged in - Will show a details about a repository.
-Each repository page will show
+#### Repository will show
 
 - Top languages
-- Number of stars and watchers
+- Number of stars and list of watchers
 - All files and folders in the repo
 - A button to star/unstar the repository
 - Some info about the last commit and last committer
-- The default branch
+- The default branch name
 - The readme of the repository, with rendered markdown and images
 
 ## Challenges Faced
 
 This was my first time using -
 
-- next-auth and
+- next-auth,
 - next middleware, and
-- github' graphql API
+- github's graphql api
 
 So I had to learn how to use them correctly, next-auth is a great experience, next middleware is a bit janky and only next-auth beta works with it.
 
@@ -88,3 +94,4 @@ I tried to rewrite the data fetching hooks and queries with graphql code generat
 
 - Some actions aren't always successful, like starring a repository, it's a case of repository permissions for external apps.
 - Readme doesn't render locally linked images/links.
+- Does not work for github orgs.
